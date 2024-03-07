@@ -1,0 +1,30 @@
+version: '3.11'
+
+services:
+  cyberpunk_inventory:
+    container_name: cyberpunk_inventory
+    build: .
+    command: uvicorn main:app --host 0.0.0.0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+  db:
+    container_name: db
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_DB=${DBNAME}
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - my-datavolume:/var/lib/postgresql/data
+    env_file:
+      - .env
+volumes:
+  my-datavolume:
+  cache:
