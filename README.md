@@ -14,7 +14,6 @@ pip install -r requirements.txt
 ```
 **Apply migrations:**
 ```
-alembic init alembic_name
 alembic revision --autogenerate -m "your_migration_message"
 alembic update head
 ```
