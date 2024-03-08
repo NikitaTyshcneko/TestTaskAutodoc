@@ -105,7 +105,7 @@ async def user_add_card(item_name: str, username_from_jwt: str = Depends(get_use
     }
 
 
-@router.get("/api/v1/user-item/delete/", tags=["User-item"])
+@router.delete("/api/v1/user-item/delete/", tags=["User-item"])
 async def user_all_items(item_name:str, username: str):
     await UserItemCrud(db=db).delete_item_from_user(item_name, username)
     return {
